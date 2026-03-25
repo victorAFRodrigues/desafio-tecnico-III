@@ -8,7 +8,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('API Médica')
     .setDescription('Cadastro de pacientes e exames DICOM')
-    .setVersion('1.0')
+    .setVersion('1.1')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

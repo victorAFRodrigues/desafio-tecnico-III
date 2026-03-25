@@ -12,7 +12,9 @@ export class PacientesService {
       return await this.prisma.paciente.create({
         data: {
           nome: dto.nome,
-          documento: dto.documento,
+          cpf: dto.cpf,
+          telefone: dto.telefone,
+          email: dto.email,
           dataNascimento: new Date(dto.dataNascimento),
         },
       });

@@ -60,7 +60,7 @@ export class ExamesService {
         take: pageSize,
         orderBy: { createdAt: 'desc' },
         include: {
-          paciente: { select: { id: true, nome: true, documento: true } },
+          paciente: { select: { id: true, nome: true, cpf: true } },
         },
       }),
       this.prisma.exame.count(),

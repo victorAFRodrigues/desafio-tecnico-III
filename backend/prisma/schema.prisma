@@ -15,7 +15,9 @@ datasource db {
 model Paciente {
   id             String   @id @default(uuid())
   nome           String
-  documento      String   @unique
+  cpf            String   @unique
+  telefone       String?
+  email          String   @unique
   dataNascimento DateTime
   createdAt      DateTime @default(now())
 
