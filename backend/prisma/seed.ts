@@ -1,8 +1,13 @@
+import 'dotenv/config';
+import { Pool } from 'pg';
+import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient, Modalidade } from '@prisma/client';
 import { faker } from '@faker-js/faker/locale/pt_BR';
 import { randomUUID } from 'crypto';
 
-const prisma = new PrismaClient();
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
     console.log('Limpando banco...');
