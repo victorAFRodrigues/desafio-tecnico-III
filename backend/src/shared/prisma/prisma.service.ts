@@ -1,5 +1,5 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { ConflictException, Injectable, OnModuleInit } from '@nestjs/common';
+import { PrismaClient, Prisma } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 
 @Injectable()
@@ -13,5 +13,17 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
 
   async onModuleInit() {
     await this.$connect();
+  }
+
+  handleError(error: unknown): never {
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      switch (error.code) {
+        case 'P2002':
+          throw new ConflictException('Registro duplicado');
+        case 'P2025':
+          throw new ConflictException('Registro não encontrado');
+      }
+    }
+    throw error;
   }
 }

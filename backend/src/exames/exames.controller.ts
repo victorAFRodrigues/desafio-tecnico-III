@@ -1,34 +1,35 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ExamesService } from './exames.service';
 import { CreateExameDto } from './dto/create-exame.dto';
-import { UpdateExameDto } from './dto/update-exame.dto';
 
 @Controller('exames')
 export class ExamesController {
   constructor(private readonly examesService: ExamesService) {}
 
   @Post()
-  create(@Body() createExameDto: CreateExameDto) {
-    return this.examesService.create(createExameDto);
+  async create(@Body() dto: CreateExameDto) {
+    return await this.examesService.create(dto);
   }
 
   @Get()
-  findAll() {
-    return this.examesService.findAll();
+  @HttpCode(200)
+  findAll(
+    @Query('page') page: string = '1',
+    @Query('pageSize') pageSize: string = '10',
+  ) {
+    return this.examesService.findAll(Number(page), Number(pageSize));
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.examesService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateExameDto: UpdateExameDto) {
-    return this.examesService.update(+id, updateExameDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.examesService.remove(+id);
+    return this.examesService.findOne(id);
   }
 }
