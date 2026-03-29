@@ -1,0 +1,65 @@
+<p-toast />
+
+<div class="p-4">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Pacientes</h1>
+    <p-button label="Novo Paciente" icon="pi pi-plus" (onClick)="openForm()" />
+  </div>
+
+  <!-- Loading -->
+  @if (loading()) {
+    <div class="flex justify-center py-10">
+      <p-progressSpinner />
+    </div>
+  }
+
+  <!-- Erro de rede -->
+  @if (error()) {
+    <div class="flex flex-col items-center gap-4 py-10">
+      <p class="text-red-500">Erro ao carregar pacientes.</p>
+      <p-button label="Tentar novamente" icon="pi pi-refresh" (onClick)="load()" />
+    </div>
+  }
+
+  <!-- Tabela -->
+  @if (!loading() && !error()) {
+    <p-table [value]="pacientes()"
+             [lazy]="true"
+             [paginator]="true"
+             [rows]="pageSize"
+             [totalRecords]="total"
+             [(first)]="first"
+             (onPage)="onPageChange($event)">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Nome</th>
+          <th>CPF</th>
+          <th>Email</th>
+          <th>Data de Nascimento</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-patient>
+        <tr>
+          <td>{{ patient.nome }}</td>
+          <td>{{ patient.cpf }}</td>
+          <td>{{ patient.email }}</td>
+          <td>{{ patient.dataNascimento | date:'dd/MM/yyyy' }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="empty">
+        <tr>
+          <td colspan="4" class="text-center py-6">Nenhum registro encontrado.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  }
+</div>
+
+<!-- Dialog -->
+<p-dialog header="Novo Paciente" [modal]="true" [(visible)]="dialogVisible"
+          [style]="{ width: '500px' }">
+  <app-form-pacientes
+    (created)="onPacienteCreated()"
+    (formError)="onFormError($event)"
+  />
+</p-dialog>

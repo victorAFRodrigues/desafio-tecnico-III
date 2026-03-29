@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   Param,
   Patch,
   Post,
@@ -21,11 +22,17 @@ export class PacientesController {
   }
 
   @Get()
-  findAll(
-    @Query('page') page: string = '1',
-    @Query('pageSize') pageSize: string = '10',
-  ) {
-    return this.pacientesService.findAll(Number(page), Number(pageSize));
+  @HttpCode(200)
+  findAll(@Query('page') page?: string, @Query('pageSize') pageSize?: string) {
+    const parsedPage = Number(page);
+    const parsedPageSize = Number(pageSize);
+
+    console.log({ page, pageSize });
+
+    return this.pacientesService.findAll(
+      isNaN(parsedPage) ? 1 : parsedPage,
+      isNaN(parsedPageSize) ? 10 : parsedPageSize,
+    );
   }
 
   @Get(':id')

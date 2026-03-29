@@ -52,29 +52,35 @@ export class ExamesService {
   }
 
   async findAll(page: number = 1, pageSize: number = 10) {
-    const skip = (page - 1) * pageSize;
+    const safePage = Math.max(1, Number(page) || 1);
+    const safePageSize = Math.max(1, Number(pageSize) || 10);
+    const skip = (safePage - 1) * safePageSize;
 
-    const [data, total] = await this.prisma.$transaction([
-      this.prisma.exame.findMany({
-        skip,
-        take: pageSize,
-        orderBy: { createdAt: 'desc' },
-        include: {
-          paciente: { select: { id: true, nome: true, cpf: true } },
+    try {
+      const [data, total] = await Promise.all([
+        this.prisma.exame.findMany({
+          skip,
+          take: pageSize,
+          orderBy: { createdAt: 'desc' },
+          include: {
+            paciente: { select: { id: true, nome: true, cpf: true } },
+          },
+        }),
+        this.prisma.exame.count(),
+      ]);
+
+      return {
+        data,
+        meta: {
+          total,
+          page,
+          pageSize,
+          totalPages: Math.ceil(total / pageSize),
         },
-      }),
-      this.prisma.exame.count(),
-    ]);
-
-    return {
-      data,
-      meta: {
-        total,
-        page,
-        pageSize,
-        totalPages: Math.ceil(total / pageSize),
-      },
-    };
+      };
+    } catch (error) {
+      this.prisma.handleError(error);
+    }
   }
 
   async findOne(id: string) {

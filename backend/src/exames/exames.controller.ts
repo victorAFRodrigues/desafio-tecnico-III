@@ -22,10 +22,18 @@ export class ExamesController {
   @Get()
   @HttpCode(200)
   findAll(
-    @Query('page') page: string = '1',
-    @Query('pageSize') pageSize: string = '10',
+    @Query('page') page?: string,
+    @Query('pageSize') pageSize?: string
   ) {
-    return this.examesService.findAll(Number(page), Number(pageSize));
+    const parsedPage = Number(page);
+    const parsedPageSize = Number(pageSize);
+
+    console.log({ page, pageSize });
+
+    return this.examesService.findAll(
+      isNaN(parsedPage) ? 1 : parsedPage,
+      isNaN(parsedPageSize) ? 10 : parsedPageSize,
+    );
   }
 
   @Get(':id')

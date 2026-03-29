@@ -26,6 +26,15 @@ importers:
       '@angular/router':
         specifier: ^21.2.0
         version: 21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(@angular/platform-browser@21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@primeuix/themes':
+        specifier: ^2.0.3
+        version: 2.0.3
+      primeicons:
+        specifier: ^7.0.0
+        version: 7.0.0
+      primeng:
+        specifier: ^21.1.4
+        version: 21.1.4(b7974b5989a0618ce85f023c5b6da216)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -183,6 +192,14 @@ packages:
         optional: true
       vitest:
         optional: true
+
+  '@angular/cdk@21.2.4':
+    resolution: {integrity: sha512-Zv+q9Z/wVWTt0ckuO3gnU7PbpCLTr1tKPEsofLGGzDufA5/85aBLn2UiLcjlY6wQ+V3EMqANhGo/8XJgvBEYFA==}
+    peerDependencies:
+      '@angular/common': ^21.0.0 || ^22.0.0
+      '@angular/core': ^21.0.0 || ^22.0.0
+      '@angular/platform-browser': ^21.0.0 || ^22.0.0
+      rxjs: ^6.5.3 || ^7.4.0
 
   '@angular/cli@21.2.3':
     resolution: {integrity: sha512-QzDxnSy8AUOz6ca92xfbNuEmRdWRDi1dfFkxDVr+4l6XUnA9X6VmOi7ioCO1I9oDR73LXHybOqkqHBYDlqt/Ag==}
@@ -1048,6 +1065,24 @@ packages:
   '@parcel/watcher@2.5.6':
     resolution: {integrity: sha512-tmmZ3lQxAe/k/+rNnXQRawJ4NjxO2hqiOLTHvWchtGZULp4RyFeh6aU4XdOYBFe2KE1oShQTv4AblOs2iOrNnQ==}
     engines: {node: '>= 10.0.0'}
+
+  '@primeuix/motion@0.0.10':
+    resolution: {integrity: sha512-PsZwOPq79Scp7/ionshRcQ5xKVf9+zuLcyY5mf6onK8chHT5C9JGphmcIZ4CzcqxuGEpsm8AIbTGy+zS3RtzLA==}
+    engines: {node: '>=12.11.0'}
+
+  '@primeuix/styled@0.7.4':
+    resolution: {integrity: sha512-QSO/NpOQg8e9BONWRBx9y8VGMCMYz0J/uKfNJEya/RGEu7ARx0oYW0ugI1N3/KB1AAvyGxzKBzGImbwg0KUiOQ==}
+    engines: {node: '>=12.11.0'}
+
+  '@primeuix/styles@2.0.3':
+    resolution: {integrity: sha512-2ykAB6BaHzR/6TwF8ShpJTsZrid6cVIEBVlookSdvOdmlWuevGu5vWOScgIwqWwlZcvkFYAGR/SUV3OHCTBMdw==}
+
+  '@primeuix/themes@2.0.3':
+    resolution: {integrity: sha512-3fS1883mtCWhgUgNf/feiaaDSOND4EBIOu9tZnzJlJ8QtYyL6eFLcA6V3ymCWqLVXQ1+lTVEZv1gl47FIdXReg==}
+
+  '@primeuix/utils@0.6.4':
+    resolution: {integrity: sha512-pZ5f+vj7wSzRhC7KoEQRU5fvYAe+RP9+m39CTscZ3UywCD1Y2o6Fe1rRgklMPSkzUcty2jzkA0zMYkiJBD1hgg==}
+    engines: {node: '>=12.11.0'}
 
   '@rolldown/binding-android-arm64@1.0.0-rc.4':
     resolution: {integrity: sha512-vRq9f4NzvbdZavhQbjkJBx7rRebDKYR9zHfO/Wg486+I7bSecdUapzCm5cyXoK+LHokTxgSq7A5baAXUZkIz0w==}
@@ -2205,6 +2240,20 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  primeicons@7.0.0:
+    resolution: {integrity: sha512-jK3Et9UzwzTsd6tzl2RmwrVY/b8raJ3QZLzoDACj+oTJ0oX7L9Hy+XnVwgo4QVKlKpnP/Ur13SXV/pVh4LzaDw==}
+
+  primeng@21.1.4:
+    resolution: {integrity: sha512-7W9Q91TuEJTF8I1PZybOiZRu8wtBT/EfFFPvuTOfBRlLYNJkUdQszpDUhDyfK9g4VdbL5nzMxfDAYlp4/1TsQA==}
+    peerDependencies:
+      '@angular/cdk': ^21.0.0
+      '@angular/common': ^21.0.0
+      '@angular/core': ^21.0.7
+      '@angular/forms': ^21.0.0
+      '@angular/platform-browser': ^21.0.0
+      '@angular/router': ^21.0.0
+      rxjs: ^6.0.0 || ^7.8.1
+
   proc-log@6.1.0:
     resolution: {integrity: sha512-iG+GYldRf2BQ0UDUAd6JQ/RwzaQy6mXmsk/IzlYyal4A4SNFw54MeH4/tLkF4I5WoWG9SQwuqWzS99jaFQHBuQ==}
     engines: {node: ^20.17.0 || >=22.9.0}
@@ -2849,6 +2898,15 @@ snapshots:
       - terser
       - tsx
       - yaml
+
+  '@angular/cdk@21.2.4(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(@angular/platform-browser@21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/common': 21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': 21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)
+      '@angular/platform-browser': 21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))
+      parse5: 8.0.0
+      rxjs: 7.8.2
+      tslib: 2.8.1
 
   '@angular/cli@21.2.3(chokidar@5.0.0)':
     dependencies:
@@ -3581,6 +3639,24 @@ snapshots:
       '@parcel/watcher-win32-ia32': 2.5.6
       '@parcel/watcher-win32-x64': 2.5.6
     optional: true
+
+  '@primeuix/motion@0.0.10':
+    dependencies:
+      '@primeuix/utils': 0.6.4
+
+  '@primeuix/styled@0.7.4':
+    dependencies:
+      '@primeuix/utils': 0.6.4
+
+  '@primeuix/styles@2.0.3':
+    dependencies:
+      '@primeuix/styled': 0.7.4
+
+  '@primeuix/themes@2.0.3':
+    dependencies:
+      '@primeuix/styled': 0.7.4
+
+  '@primeuix/utils@0.6.4': {}
 
   '@rolldown/binding-android-arm64@1.0.0-rc.4':
     optional: true
@@ -4743,6 +4819,23 @@ snapshots:
       source-map-js: 1.2.1
 
   prettier@3.8.1: {}
+
+  primeicons@7.0.0: {}
+
+  primeng@21.1.4(b7974b5989a0618ce85f023c5b6da216):
+    dependencies:
+      '@angular/cdk': 21.2.4(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(@angular/platform-browser@21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@angular/common': 21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2)
+      '@angular/core': 21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)
+      '@angular/forms': 21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(@angular/platform-browser@21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@angular/platform-browser': 21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))
+      '@angular/router': 21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(@angular/platform-browser@21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)))(rxjs@7.8.2)
+      '@primeuix/motion': 0.0.10
+      '@primeuix/styled': 0.7.4
+      '@primeuix/styles': 2.0.3
+      '@primeuix/utils': 0.6.4
+      rxjs: 7.8.2
+      tslib: 2.8.1
 
   proc-log@6.1.0: {}
 

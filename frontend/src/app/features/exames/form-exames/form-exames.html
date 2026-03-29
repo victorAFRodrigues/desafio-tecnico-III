@@ -1,0 +1,62 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="flex flex-col gap-4 pt-2">
+
+  <div class="flex flex-col gap-1">
+    <label>Paciente *</label>
+    <p-select formControlName="pacienteId"
+              [options]="pacientes"
+              optionLabel="nome"
+              optionValue="id"
+              placeholder="Selecione o paciente"
+              [filter]="true"
+              filterBy="nome"
+              class="w-full" />
+    @if (isInvalid('pacienteId')) {
+      <small class="text-red-500">Paciente é obrigatório.</small>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label>Modalidade *</label>
+    <p-select formControlName="modalidade"
+              [options]="modalidades"
+              placeholder="Selecione a modalidade"
+              class="w-full" />
+    @if (isInvalid('modalidade')) {
+      <small class="text-red-500">Modalidade é obrigatória.</small>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label>Descrição *</label>
+    <textarea pTextarea formControlName="descricao"
+              placeholder="Descrição do exame" rows="3"></textarea>
+    @if (isInvalid('descricao')) {
+      <small class="text-red-500">Descrição é obrigatória.</small>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label>Data do Exame *</label>
+    <p-datepicker formControlName="dataExame"
+                  dateFormat="dd/mm/yy"
+                  [showIcon]="true"
+                  [maxDate]="today"></p-datepicker>
+    @if (isInvalid('dataExame')) {
+      <small class="text-red-500">Data do exame é obrigatória.</small>
+    }
+  </div>
+
+  <div class="flex flex-col gap-1">
+    <label>Idempotency Key</label>
+    <div class="flex gap-2">
+      <input pInputText formControlName="idempotencyKey" class="flex-1" readonly />
+      <p-button icon="pi pi-refresh" severity="secondary"
+                type="button" (onClick)="regenerateKey()"
+                pTooltip="Gerar nova chave" />
+    </div>
+    <small class="text-gray-400">Gerada automaticamente. Reenviar com a mesma chave não duplica o exame.</small>
+  </div>
+
+  <p-button type="submit" label="Cadastrar Exame" [loading]="submitting" class="mt-2" />
+
+</form>

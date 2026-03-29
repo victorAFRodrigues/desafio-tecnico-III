@@ -24,10 +24,12 @@ export class PacientesService {
   }
 
   async findAll(page: number = 1, pageSize: number = 10) {
-    const skip = (page - 1) * pageSize;
+    const safePage = Math.max(1, Number(page) || 1);
+    const safePageSize = Math.max(1, Number(pageSize) || 10);
+    const skip = (safePage - 1) * safePageSize;
 
     try {
-      const [data, total] = await this.prisma.$transaction([
+      const [data, total] = await Promise.all([
         this.prisma.paciente.findMany({
           skip,
           take: pageSize,

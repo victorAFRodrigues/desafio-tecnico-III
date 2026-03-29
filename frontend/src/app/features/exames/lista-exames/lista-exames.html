@@ -1,0 +1,57 @@
+<p-toast />
+
+<div class="p-4">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Exames</h1>
+    <p-button label="Novo Exame" icon="pi pi-plus" (onClick)="openForm()" />
+  </div>
+
+  @if (loading()) {
+    <div class="flex justify-center py-10">
+      <p-progressSpinner />
+    </div>
+  }
+
+  @if (error()) {
+    <div class="flex flex-col items-center gap-4 py-10">
+      <p class="text-red-500">Erro ao carregar exames.</p>
+      <p-button label="Tentar novamente" icon="pi pi-refresh" (onClick)="load()" />
+    </div>
+  }
+
+  @if (!loading() && !error()) {
+    <p-table [value]="exames()" [lazy]="true" [paginator]="true"
+             [rows]="pageSize" [totalRecords]="total"
+             (onPage)="onPageChange($event)">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Paciente</th>
+          <th>Modalidade</th>
+          <th>Descrição</th>
+          <th>Data do Exame</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-exam>
+        <tr>
+          <td>{{ exam.paciente?.nome ?? exam.pacienteId }}</td>
+          <td>{{ exam.modalidade }}</td>
+          <td>{{ exam.descricao }}</td>
+          <td>{{ exam.dataExame | date:'dd/MM/yyyy' }}</td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="empty">
+        <tr>
+          <td colspan="4" class="text-center py-6">Nenhum registro encontrado.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  }
+</div>
+
+<p-dialog header="Novo Exame" [modal]="true" [(visible)]="dialogVisible"
+          [style]="{ width: '550px' }">
+  <app-form-exames
+    (created)="onExamCreated()"
+    (formError)="onFormError($event)"
+  />
+</p-dialog>
