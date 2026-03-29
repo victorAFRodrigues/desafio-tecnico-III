@@ -7,7 +7,7 @@ import { PaginatedResponse } from '../models/pagination';
 @Injectable({ providedIn: 'root' })
 export class ExameService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:3000/Examees';
+  private apiUrl = 'http://localhost:3000/exames';
 
   getAll(page = 1, pageSize = 10): Observable<PaginatedResponse<Exame>> {
     const params = new HttpParams().set('page', page).set('pageSize', pageSize);
